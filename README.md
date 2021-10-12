@@ -1,7 +1,8 @@
 # devise-practice
 
-** Authentication confirms that users are who they say they are. ** 
-** Authorization gives those users permission to access a resource. **
+**Authentication confirms that users are who they say they are.** 
+
+**Authorization gives those users permission to access a resource.**
 
 User role [standard, premium, admin]
 
