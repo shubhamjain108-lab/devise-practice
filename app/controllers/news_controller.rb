@@ -14,11 +14,12 @@ class NewsController < ApplicationController
   # GET /news/new
   def new
     @news = News.new
-    #authorize @news
+    authorize @news
   end
 
   # GET /news/1/edit
   def edit
+    authorize @news
   end
 
   # POST /news or /news.json
@@ -39,6 +40,7 @@ class NewsController < ApplicationController
   # PATCH/PUT /news/1 or /news/1.json
   def update
     respond_to do |format|
+      authorize @news
       if @news.update(news_params)
         format.html { redirect_to @news, notice: "News was successfully updated." }
         format.json { render :show, status: :ok, location: @news }

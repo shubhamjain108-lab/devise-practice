@@ -10,7 +10,18 @@ class NewsPolicy < ApplicationPolicy
   end
 
   def destroy?
-    p user
     user.admin?
+  end
+
+  def new?
+    user.premium? || user.admin?
+  end
+
+  def edit?
+    (user.premium? && user == record.user) || user.admin?
+  end
+
+  def update?
+    (user.premium? && user == record.user) || user.admin?
   end
 end

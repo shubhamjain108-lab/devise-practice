@@ -3,10 +3,13 @@
   Logged in as <strong><%= current_user.username %></strong>.
   User role <strong> <%= current_user.role %> </strong>.
   <%= link_to 'sign out', destroy_user_session_path, method: :delete %> |
+  <%= link_to 'edit profile', edit_user_registration_path %> |
 <% else %>
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
 <% end %>
+<%= link_to 'news request', new_userrequest_path %> |
+<%= link_to 'status', userrequests_url %>
 
 <h1>News</h1>
 
@@ -25,17 +28,21 @@
         <td><%= news.name %></td>
         <td><%= news.user.username%></td>
         <td><%= link_to 'Show', news %></td>
-        <td><%= link_to 'Edit', edit_news_path(news) %></td>
+        <% if (current_user.try(:premium?) && current_user == news.user ) || current_user.try(:admin?) %>
+          <td><%= link_to 'Edit', edit_news_path(news) %></td>
+        <% end %>
+        <% if current_user.try(:admin?) %>
           <td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New News', new_news_path %> |
-<%= current_user %>
+<% if current_user.try(:premium?) || current_user.try(:admin?)  %>
+  <%= link_to 'New News', new_news_path %> |
+<% end %>
 <% if current_user.try(:admin?) %>
   <%= link_to 'User list', users_url %>
 <% end %>
