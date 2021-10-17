@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Userrequests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>News</th>
+      <th>Purpose</th>
+      <th>Status</th>
+      <th>Admin</th>
+      <% if current_user.try(:admin?) %>
+        <th>User</th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userrequests.each do |userrequest| %>
+      <tr>
+        <% if (current_user.try(:admin?) && current_user == admin_user(userrequest.admin)) || current_user == userrequest.user %>
+          <td><%= userrequest.news %></td>
+          <td><%= userrequest.purpose %></td>
+          <td><%= userrequest.status%></td>
+          <td><%= admin_name(userrequest.admin) %></td>
+          <% if (current_user.try(:admin?) && current_user == admin_user(userrequest.admin)) %>
+            <td><%= userrequest.user.username %></td>
+            <td><%= link_to 'approve request', news_response_userrequest_path(userrequest.id) %></td>
+            <td><%= link_to 'Destroy', userrequest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <td><%= link_to 'Show', userrequest %></td>
+          <% if (current_user.try(:premium?) && current_user == userrequest.user ) || current_user.try(:admin?) %>
+            <td><%= link_to 'Edit', edit_userrequest_path(userrequest) %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Userrequest', new_userrequest_path %>

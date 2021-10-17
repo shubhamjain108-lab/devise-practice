@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_133843) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.integer "admin"
     t.string "status"
     t.index ["user_id"], name: "index_userrequests_on_user_id"
   end

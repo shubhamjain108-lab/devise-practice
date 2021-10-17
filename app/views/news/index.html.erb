@@ -9,7 +9,11 @@
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
 <% end %>
 <%= link_to 'news request', new_userrequest_path %> |
-<%= link_to 'status', userrequests_url %>
+<% if current_user.try(:admin?) %>
+  <%= link_to 'response', userrequests_url %>
+<% else %>
+  <%= link_to 'status', userrequests_url %>
+<% end %>
 
 <h1>News</h1>
 

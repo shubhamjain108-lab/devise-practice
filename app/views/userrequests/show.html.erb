@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>News:</strong>
+  <%= @userrequest.news %>
+</p>
+
+<p>
+  <strong>Purpose:</strong>
+  <%= @userrequest.purpose %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+    <%= @userrequest.status %>
+</p>
+
+<p>
+  <strong>Admin:</strong>
+  <%= admin_name(@userrequest.admin) %>
+</p>
+
+<p>
+  <strong>User:</strong>
+    <%= @userrequest.user.username %>
+</p>
+
+<%= link_to 'Edit', edit_userrequest_path(@userrequest) %> |
+<%= link_to 'Back', userrequests_path %>

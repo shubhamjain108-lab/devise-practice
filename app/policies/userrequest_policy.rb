@@ -9,5 +9,23 @@ class UserrequestPolicy < ApplicationPolicy
     end
   end
 
-  
+  def response?
+    (user.admin? && user == record.user)
+  end
+
+  def show?
+    (user.admin? && user == record.user)
+  end
+
+  def destroy?
+    user.admin?
+  end
+
+  def edit?
+    (user.premium? && user == record.user) || user.admin?
+  end
+
+  def update?
+    (user.premium? && user == record.user) || user.admin?
+  end
 end
