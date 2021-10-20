@@ -32,6 +32,8 @@ class UserrequestsController < ApplicationController
 
     respond_to do |format|
       if @userrequest.save
+        UserrequestsMailer.with(userrequest: @userrequest).admin_mail.deliver_later
+        UserrequestsMailer.with(userrequest: @userrequest).user_email.deliver_later
         format.html { redirect_to @userrequest, notice: "Userrequest was successfully created." }
         format.json { render :show, status: :created, location: @userrequest }
       else

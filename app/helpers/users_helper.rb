@@ -6,4 +6,5 @@ module UsersHelper
   def admin_user(user)
     User.find(user)
   end
+
 end

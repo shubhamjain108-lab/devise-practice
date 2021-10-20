@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>You got a news request from <%= @userrequest.user.username %>!</p>
+  <p>
+  News details<br>
+  --------------------------
+  </p>
+  <p>News: <%= @userrequest.news %></p>
+  <p>Purpose: <%= @userrequest.purpose %></p>
+  <p>Status: <%= @userrequest.status %></p>
+  <p>
+  Message:<br>
+  --------------------------
+  <p><%= @admin_name.capitalize %>, Please approve user request.</p>
+  <p>Thank you</p>
+  </p>
+  </body>
+</html>

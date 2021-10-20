@@ -28,6 +28,7 @@ class NewsController < ApplicationController
     #authorize @news
     respond_to do |format|
       if @news.save
+        NewsMailer.with(news: @news).admin_email.deliver_later
         format.html { redirect_to @news, notice: "News was successfully created." }
         format.json { render :show, status: :created, location: @news }
       else
