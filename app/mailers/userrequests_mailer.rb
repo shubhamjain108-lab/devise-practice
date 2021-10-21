@@ -13,6 +13,12 @@ class UserrequestsMailer < ApplicationMailer
     @admin_name = User.find(user).username
   end
 
+  def approve_notification
+    @userrequest = params[:userrequest]
+    p @userrequest
+    mail(to: @userrequest.user.email, subject: "Your news request has approved!")
+  end
+
   def user_email
     @userrequest = params[:userrequest]
 

@@ -24,6 +24,11 @@ class UserrequestsController < ApplicationController
   def news_response
     @userrequest = Userrequest.find(params[:id]).update(status: "approved")
     flash[:notice] = "You approved this news request."
+    p "news response"
+    p @userrequest
+    @userrequest = Userrequest.find(params[:id])
+    p @userrequest
+    UserrequestsMailer.with(userrequest: @userrequest).approve_notification.deliver_later
   end
 
   # POST /userrequests or /userrequests.json
